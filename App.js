@@ -1,5 +1,5 @@
-
 import React from 'react';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -11,51 +11,57 @@ import {
 } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import ScreenA from './ScreenA';
-import ScreenB from './ScreenB';
+import { createStackNavigator, Header } from '@react-navigation/stack';
+import ScreenA from './Screens/ScreenA';
+import ScreenB from './Screens/ScreenB';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const Stack = createMaterialTopTabNavigator();
+const Stack = createDrawerNavigator();
 
 const App = () => {
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-            if (route.name === 'Screen_1') {
-              iconName = 'atom';
-              color = focused ? '#921' : ' #555';
-            }
-            else if (route.name === 'Screen_2') {
-              iconName = 'anchor';
-              color = focused ? '#921' : ' #555';
-            }
-            return (
+        initialRouteName='Screen_2'
+        drawerType="back"
+        screenOptions={{
+          drawerActiveTintColor: '#629',
+          drawerType: "back",
+          swipeEdgeWidth: 300,
+          overlayColor: 'black',
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: '#763'
+          },
+          headerTintColor: '#fff'
+
+        }}
+      >
+        <Stack.Screen name='Screen_1' component={ScreenA}
+          options={{
+            title: ' Flipkart',
+            drawerIcon: (focussed) => (
               <FontAwesome5
-                name={iconName}
-                size={25}
-                color={color}
+                name='btc'
+                size={focussed ? 25 : 10}
               />
             )
-          },
-          tabBarActiveBackgroundColor: 'tomato',
-          tabBarShowLabel: false,
-          title: false,
-
-
-
-        })}
-        tabBarPosition='bottom'
-
-      >
-        <Stack.Screen name='Screen_1' component={ScreenA} options />
+          }}
+        />
         <Stack.Screen name='Screen_2' component={ScreenB}
+          options={{
+            title: ' Amazon',
+            drawerIcon: (focussed) => (
+              <FontAwesome5
+                name='btc'
+                size={focussed ? 25 : 10}
+              />
+            )
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -63,3 +69,13 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+
+
+// async stroage code
+
+
+// import

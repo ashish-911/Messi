@@ -19,11 +19,14 @@ export default function ScreenA({ navigation }) {
             <Pressable
                 style={Styles.button}
                 android_ripple={{ color: 'red' }}
-                onPress={() => navigation.navigate('Screen_2')}
+                onPress={() =>
+                    // navigation.navigate('Screen_2')
+                    navigation.openDrawer()
+                }
             >
-                <Text style={Styles.text}>Go to Screen 2</Text>
+                <Text style={Styles.text}>Open Drawer</Text>
             </Pressable>
-        </View>
+        </View >
     )
 
 }
